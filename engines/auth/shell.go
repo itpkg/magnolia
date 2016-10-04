@@ -11,6 +11,7 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/facebookgo/inject"
 	"github.com/fvbock/endless"
+	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/itpkg/magnolia/web"
 	"github.com/itpkg/magnolia/web/i18n"
@@ -62,8 +63,10 @@ func (p *Engine) Shell() []cli.Command {
 					gin.SetMode(gin.ReleaseMode)
 				}
 				rt := gin.Default()
-				// rt.LoadHTMLGlob(fmt.Sprintf("themes/%s/**/*", viper.GetString("server.theme")))
+				rt.LoadHTMLGlob(fmt.Sprintf("themes/%s/**/*", viper.GetString("server.theme")))
 				rt.Use(i18n.LocaleHandler)
+				sst := sessions.NewCookieStore([]byte(viper.GetString("secrets.cookie")))
+				rt.Use(sessions.Sessions("_magnolia_", sst))
 
 				web.Loop(func(en web.Engine) error {
 					en.Mount(rt)
@@ -477,8 +480,9 @@ func init() {
 		"theme": "bootstrap4",
 	})
 	viper.SetDefault("secrets", map[string]interface{}{
-		"jwt": web.RandomStr(32),
-		"aes": web.RandomStr(32),
+		"jwt":    web.RandomStr(32),
+		"aes":    web.RandomStr(32),
+		"cookie": web.RandomStr(32),
 	})
 
 	viper.SetDefault("workers", map[string]interface{}{

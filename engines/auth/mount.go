@@ -8,6 +8,9 @@ func (p *Engine) Mount(rt *gin.Engine) {
 	rt.POST("/install", JSON(p.postInstall))
 
 	ug := rt.Group("/users")
+	ug.GET("/sign-in", p.getUserSignIn)
+	ug.GET("/sign-up", p.getUserSignUp)
+
 	ug.POST("/sign-in", JSON(p.postUserSignIn))
 	ug.POST("/sign-up", JSON(p.postUserSignUp))
 	ug.POST("/confirm", JSON(p.postUserConfirm))

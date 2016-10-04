@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"net/http"
 	"text/template"
 	"time"
 
@@ -13,6 +14,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
+
+func (p *Engine) getUserSignIn(c *gin.Context) {
+	c.HTML(http.StatusOK, "users/sign-in", gin.H{})
+}
+func (p *Engine) getUserSignUp(c *gin.Context) {
+	c.HTML(http.StatusOK, "users/sign-up", gin.H{})
+}
 
 func (p *Engine) postUserSignIn(c *gin.Context) (interface{}, error) {
 	var fm FmSignIn

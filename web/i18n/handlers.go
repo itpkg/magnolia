@@ -7,12 +7,13 @@ import (
 
 //LocaleHandler detect locale from http header
 func LocaleHandler(c *gin.Context) {
+	const key = "locale"
 	// 1. Check URL arguments.
-	lng := c.Request.URL.Query().Get("locale")
+	lng := c.Request.URL.Query().Get(key)
 
 	// 2. Get language information from cookies.
 	if len(lng) == 0 {
-		if ck, er := c.Request.Cookie("locale"); er == nil {
+		if ck, er := c.Request.Cookie(key); er == nil {
 			lng = ck.Value
 		}
 	}
@@ -25,6 +26,8 @@ func LocaleHandler(c *gin.Context) {
 		}
 	}
 	tag, _, _ := matcher.Match(language.Make(lng))
+	// 4. Write to cookie.
+	c.SetCookie("lang", tag.String(), 1<<31-1, "/", "", false, false)
 	c.Set("locale", &tag)
 }
 

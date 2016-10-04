@@ -1,3 +1,6 @@
+buttons.submit = 提交
+buttons.reset = 重写
+
 auth.users.confirm.title = "激活你的账户。[{{.Page.Title}}]"
 auth.users.confirm.body = "请点击: <a href='{{.Link}}'>{{.Link}}</a>"
 auth.users.unlock.title = "解锁你的账户.[{{.Page.Title}}]"

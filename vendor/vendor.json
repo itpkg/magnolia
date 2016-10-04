@@ -99,6 +99,12 @@
 			"revisionTime": "2016-04-14T23:39:28Z"
 		},
 		{
+			"checksumSHA1": "cVyhKIRI2gQrgpn5qrBeAqErmWM=",
+			"path": "github.com/go-ini/ini",
+			"revision": "6e4869b434bd001f6983749881c7ead3545887d8",
+			"revisionTime": "2016-08-27T06:11:18Z"
+		},
+		{
 			"checksumSHA1": "qjr2SKQanbmna221z0Ce2n0hnDE=",
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "df1d3ca07d2d07bba352d5b73c4313b4e2a6203e",

@@ -1,3 +1,6 @@
+buttons.submit = Submit
+buttons.reset = Reset
+
 auth.users.confirm.title = "Confirm your account.[{{.Page.Title}}]"
 auth.users.confirm.body = "Please click: <a href='{{.Link}}'>{{.Link}}</a>"
 auth.users.unlock.title = "Unlock your account.[{{.Page.Title}}]"

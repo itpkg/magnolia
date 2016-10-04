@@ -12,9 +12,8 @@ import (
 	"github.com/facebookgo/inject"
 	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
-	"github.com/itpkg/magnolia/web/i18n"
 	"github.com/itpkg/magnolia/web"
-	"github.com/rs/cors"
+	"github.com/itpkg/magnolia/web/i18n"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli"
 )
@@ -72,17 +71,20 @@ func (p *Engine) Shell() []cli.Command {
 				})
 
 				adr := fmt.Sprintf(":%d", viper.GetInt("server.port"))
-				hnd := cors.New(cors.Options{
-					AllowCredentials: true,
-					AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "PATCH"},
-					AllowedHeaders:   []string{"*"},
-					Debug:            !IsProduction(),
-				}).Handler(rt)
+
+				// hnd := cors.New(cors.Options{
+				// 	AllowCredentials: true,
+				// 	AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "PATCH"},
+				// 	AllowedHeaders:   []string{"*"},
+				// 	Debug:            !IsProduction(),
+				// }).Handler(rt)
+
+				p.Logger.Infof("start at: %s", Home())
 
 				if IsProduction() {
-					return endless.ListenAndServe(adr, hnd)
+					return endless.ListenAndServe(adr, rt)
 				}
-				return http.ListenAndServe(adr, hnd)
+				return http.ListenAndServe(adr, rt)
 			}),
 		},
 		{
@@ -213,31 +215,34 @@ server {
 #    access_log off;
 #    add_header Cache-Control "public";
 #  }
-  location ~* \.(?:css|js)$ {
-    gzip_static on;
-    expires max;
-    access_log off;
-    add_header Cache-Control "public";
-  }
-  location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
-    expires 1M;
-    access_log off;
-    add_header Cache-Control "public";
-  }
-  location ~* \.(?:rss|atom)$ {
-    expires 12h;
-    access_log off;
-    add_header Cache-Control "public";
-  }
-  location ~ ^/api/{{.Version}}(/?)(.*) {
+#  location ~* \.(?:css|js)$ {
+#    gzip_static on;
+#    expires max;
+#    access_log off;
+#    add_header Cache-Control "public";
+#  }
+#  location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
+#    expires 1M;
+#    access_log off;
+#    add_header Cache-Control "public";
+#  }
+#  location ~* \.(?:rss|atom)$ {
+#    expires 12h;
+#    access_log off;
+#    add_header Cache-Control "public";
+#  }
+
+  location / {
     proxy_set_header X-Forwarded-Proto https;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_redirect off;
-    proxy_pass http://{{.Name}}_prod/$2$is_args$args;
+    proxy_pass http://{{.Name}}_prod;
     # limit_req zone=one;
   }
+
+
 }
 `
 				t, err := template.New("").Parse(tpl)
@@ -262,15 +267,13 @@ server {
 				defer fd.Close()
 
 				return t.Execute(fd, struct {
-					Name    string
-					Port    int
-					Root    string
-					Version string
+					Name string
+					Port int
+					Root string
 				}{
-					Name:    name,
-					Port:    viper.GetInt("http.port"),
-					Root:    pwd,
-					Version: "v1",
+					Name: name,
+					Port: viper.GetInt("server.port"),
+					Root: pwd,
 				})
 			}),
 		},
@@ -451,11 +454,6 @@ func init() {
 		"host": "localhost",
 		"port": 6379,
 		"db":   8,
-	})
-
-	viper.SetDefault("home", map[string]interface{}{
-		"backend": "http://localhost:8080",
-		"front":   "http://localhost:4200",
 	})
 
 	viper.SetDefault("database", map[string]interface{}{

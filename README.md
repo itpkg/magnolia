@@ -53,6 +53,7 @@ GRANT ALL PRIVILEGES ON DATABASE db-name TO user-name;
 ```
 go get github.com/itpkg/magnolia
 cd $GOPATH/src/github.com/itpkg/magnolia
+govendor sync
 make
 ls -lh dist
 ```
@@ -60,12 +61,8 @@ ls -lh dist
 ### Development
 ```
 cd $GOPATH/src/github.com/itpkg/magnolia
-# start backend server
 cd demo
 go run main.go s
-# start front server
-cd front
-npm run dev
 ```
 
 ## Documents

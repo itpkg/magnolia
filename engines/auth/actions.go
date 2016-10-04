@@ -2,7 +2,7 @@ package auth
 
 import (
 	"github.com/facebookgo/inject"
-	"github.com/itpkg/magnolia/i18n"
+	"github.com/itpkg/magnolia/web/i18n"
 	"github.com/itpkg/magnolia/web"
 	"github.com/spf13/viper"
 	"github.com/urfave/cli"

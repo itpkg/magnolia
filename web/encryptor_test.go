@@ -4,7 +4,7 @@ import (
 	"crypto/aes"
 	"testing"
 
-	"github.com/magnolia/magnolia/web"
+	"github.com/itpkg/magnolia/web"
 )
 
 func TestTextEncryptor(t *testing.T) {

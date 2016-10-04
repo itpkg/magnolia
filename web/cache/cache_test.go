@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/garyburd/redigo/redis"
-	"github.com/itpkg/magnolia/web"
+	"github.com/itpkg/magnolia/web/cache"
 )
 
 type S struct {
@@ -13,7 +13,7 @@ type S struct {
 	SV string
 }
 
-func testCache(t *testing.T, c web.Cache) {
+func testCache(t *testing.T, c cache.Store) {
 	s1 := S{IV: 100, SV: "hello, magnolia!"}
 	if err := c.Set("hello", &s1, 60); err != nil {
 		t.Fatal(err)
@@ -49,5 +49,5 @@ func TestRedisCache(t *testing.T) {
 		},
 	}
 
-	testCache(t, &web.RedisCache{Redis: &pool})
+	testCache(t, &cache.RedisStore{Redis: &pool})
 }

@@ -3,7 +3,7 @@ package i18n_test
 import (
 	"testing"
 
-	"github.com/itpkg/magnolia/i18n"
+	"github.com/itpkg/magnolia/web/i18n"
 	"github.com/jinzhu/gorm"
 	_ "github.com/mattn/go-sqlite3"
 	logging "github.com/op/go-logging"

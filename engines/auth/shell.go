@@ -12,7 +12,7 @@ import (
 	"github.com/facebookgo/inject"
 	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
-	"github.com/itpkg/magnolia/i18n"
+	"github.com/itpkg/magnolia/web/i18n"
 	"github.com/itpkg/magnolia/web"
 	"github.com/rs/cors"
 	"github.com/spf13/viper"

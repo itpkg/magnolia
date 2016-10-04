@@ -201,6 +201,12 @@
 			"revisionTime": "2016-01-26T18:01:36Z"
 		},
 		{
+			"checksumSHA1": "0YgW0+rmiIzLlvhIKlQ0s0olPg8=",
+			"path": "github.com/mattn/go-sqlite3",
+			"revision": "e5a3c16c5c1d80b24f633e68aecd6b0702786d3d",
+			"revisionTime": "2016-10-04T16:01:36Z"
+		},
+		{
 			"checksumSHA1": "LUrnGREfnifW4WDMaavmc9MlLI0=",
 			"path": "github.com/mitchellh/mapstructure",
 			"revision": "ca63d7c062ee3c9f34db231e352b60012b4fd0c1",

@@ -5,9 +5,9 @@ import (
 
 	"github.com/SermoDigital/jose/crypto"
 	"github.com/facebookgo/inject"
-	"github.com/itpkg/magnolia/cache"
-	"github.com/itpkg/magnolia/i18n"
-	"github.com/itpkg/magnolia/jobber"
+	"github.com/itpkg/magnolia/web/cache"
+	"github.com/itpkg/magnolia/web/i18n"
+	"github.com/itpkg/magnolia/web/jobber"
 	"github.com/itpkg/magnolia/web"
 	"github.com/jinzhu/gorm"
 	logging "github.com/op/go-logging"

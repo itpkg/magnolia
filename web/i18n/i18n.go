@@ -119,5 +119,8 @@ func (p *I18n) T(lng *language.Tag, code string, args ...interface{}) string {
 			msg = items[code]
 		}
 	}
+	if len(msg) == 0 {
+		return fmt.Sprintf("%s://%s", lang, code)
+	}
 	return fmt.Sprintf(msg, args...)
 }

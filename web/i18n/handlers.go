@@ -27,8 +27,8 @@ func LocaleHandler(c *gin.Context) {
 	}
 	tag, _, _ := matcher.Match(language.Make(lng))
 	// 4. Write to cookie.
-	c.SetCookie("lang", tag.String(), 1<<31-1, "/", "", false, false)
-	c.Set("locale", &tag)
+	c.SetCookie(key, tag.String(), 1<<31-1, "/", "", false, false)
+	c.Set(key, &tag)
 }
 
 var matcher language.Matcher

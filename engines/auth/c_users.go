@@ -19,7 +19,8 @@ func (p *Engine) getUserSignIn(c *gin.Context) {
 	c.HTML(http.StatusOK, "users/sign-in", gin.H{})
 }
 func (p *Engine) getUserSignUp(c *gin.Context) {
-	c.HTML(http.StatusOK, "users/sign-up", gin.H{})
+	lng := c.MustGet("locale").(*language.Tag)
+	c.HTML(http.StatusOK, "users/sign-up", gin.H{"Locale": lng.String()})
 }
 
 func (p *Engine) postUserSignIn(c *gin.Context) (interface{}, error) {

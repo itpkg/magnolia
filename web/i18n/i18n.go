@@ -52,7 +52,7 @@ func (p *I18n) Exist(lang string) bool {
 
 //Load load locales
 func (p *I18n) Load(dir string) error {
-	const ext = ".toml"
+	const ext = ".ini"
 	// Load locale from filesystem
 	if err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if info.Mode().IsRegular() {
@@ -102,9 +102,12 @@ func (p *I18n) set(lng *language.Tag, code, message string) {
 }
 
 //Ts translate by lang
-func (p *I18n) Ts(lng string, code string, args ...interface{}) string {
-	l := language.Make(lng)
-	return p.T(&l, code, args...)
+func (p *I18n) Ts(args ...interface{}) string {
+	if len(args) < 2 {
+		return "null"
+	}
+	l := language.Make(args[0].(string))
+	return p.T(&l, args[1].(string), args[2:]...)
 }
 
 //T translate by lang tag

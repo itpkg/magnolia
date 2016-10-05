@@ -50,7 +50,7 @@ public class SettingService {
     public String getHome() {
         String domain = get("site.domain", String.class);
         if (isProduction()) {
-            if (get("site.ssl", Boolean.class)) {
+            if (get("site.https?", Boolean.class)) {
                 return String.format("https://%s", domain);
             }
             return String.format("http://%s", domain);

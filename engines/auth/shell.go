@@ -64,6 +64,21 @@ func (p *Engine) Shell() []cli.Command {
 				}
 				rt := gin.Default()
 				rt.LoadHTMLGlob(fmt.Sprintf("themes/%s/**/*", viper.GetString("server.theme")))
+
+				// if tpl, err := template.
+				// 	New("").
+				// 	Funcs(template.FuncMap{"T": p.I18n.Ts}).
+				// 	ParseGlob(
+				// 		fmt.Sprintf(
+				// 			"themes/%s/**/*",
+				// 			viper.GetString("server.theme"),
+				// 		),
+				// 	); err == nil {
+				// 	rt.SetHTMLTemplate(tpl)
+				// } else {
+				// 	return err
+				// }
+
 				rt.Use(i18n.LocaleHandler)
 				sst := sessions.NewCookieStore([]byte(viper.GetString("secrets.cookie")))
 				rt.Use(sessions.Sessions("_magnolia_", sst))

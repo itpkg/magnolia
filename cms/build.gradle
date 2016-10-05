@@ -1,0 +1,7 @@
+jar {
+    baseName = "${project.ext.name}-cms"
+    version = project.ext.version
+}
+
+
+

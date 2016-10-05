@@ -7,8 +7,13 @@ buildscript {
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'magnolia-app'
-    version = '2016.10.05'
+    baseName = "${project.ext.name}-app"
+    version = project.ext.version
+
+    manifest {
+        attributes("Implementation-Title": project.ext.name.toUpperCase(),
+                "Implementation-Version": version)
+    }
 
     exclude('application.properties')
     exclude('logback*.xml')
@@ -32,12 +37,12 @@ dependencies {
     compile group: 'ch.qos.logback', name: 'logback-core', version: logbackVersion
     compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
 
-    //compile project(":auth")
-    //compile project(":cms")
-    //compile project(":reading")
-    //compile project(":shop")
-    //compile project(":mail")
-    //compile project(":vpn")
+    compile project(":auth")
+    compile project(":cms")
+    compile project(":reading")
+    compile project(":shop")
+    compile project(":mail")
+    compile project(":vpn")
 
 }
 

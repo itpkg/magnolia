@@ -1,0 +1,10 @@
+jar {
+    baseName = "${project.ext.name}-auth"
+    version = project.ext.version
+}
+
+dependencies {
+    testCompile("junit:junit:4.+")
+}
+
+

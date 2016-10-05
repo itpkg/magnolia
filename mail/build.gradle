@@ -1,0 +1,7 @@
+jar {
+    baseName = "${project.ext.name}-mail"
+    version = project.ext.version
+}
+
+
+

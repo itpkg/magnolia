@@ -1,0 +1,12 @@
+# editor
+/.idea
+.*.swp
+*~
+
+# build
+.gradle
+build
+/dist
+
+# run
+tmp

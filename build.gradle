@@ -17,6 +17,11 @@ allprojects {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
+    project.ext {
+        version = "2016.10.05"
+        name = "magnolia"
+    }
+
 
     dependencies {
         compileOnly group: 'javax', name: 'javaee-api', version: '7.0'

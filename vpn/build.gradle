@@ -1,0 +1,7 @@
+jar {
+    baseName = "${project.ext.name}-vpn"
+    version = project.ext.version
+}
+
+
+

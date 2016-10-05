@@ -18,7 +18,7 @@ import java.io.Writer;
  */
 @Component("auth.nginxHelper")
 public class NginxHelper {
-    private class Model implements Serializable{
+    private class Model implements Serializable {
         String domain;
         boolean https;
         int port;

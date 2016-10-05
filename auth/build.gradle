@@ -4,7 +4,7 @@ jar {
 }
 
 dependencies {
-    testCompile("junit:junit:4.+")
+    compile group: 'org.jasypt', name: 'jasypt', version: '1.9.2'
 }
 
 

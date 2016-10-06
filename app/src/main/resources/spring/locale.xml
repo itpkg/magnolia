@@ -16,7 +16,7 @@
         </bean>
     </mvc:interceptors>
 
-    <bean id="messageSource" class="magnolia.auth.DatabaseMessageSource">
+    <bean id="messageSource" class="com.github.itpkg.magnolia.auth.DatabaseMessageSource">
         <property name="useCodeAsDefaultMessage" value="true"/>
         <property name="parentMessageSource" ref="bundleMessageSource"/>
     </bean>

@@ -17,7 +17,7 @@
         <constructor-arg ref="redisTemplate"/>
         <property name="usePrefix" value="true"/>
         <property name="cachePrefix">
-            <bean class="magnolia.RedisCachePrefix">
+            <bean class="com.github.itpkg.magnolia.RedisCachePrefix">
                 <property name="prefix" value="${app.cache.prefix}"/>
             </bean>
         </property>

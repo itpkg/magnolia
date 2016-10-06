@@ -5,8 +5,8 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <jpa:repositories base-package="magnolia"/>
-    <context:component-scan base-package="magnolia"/>
+    <jpa:repositories base-package="com.github.itpkg.magnolia"/>
+    <context:component-scan base-package="com.github.itpkg.magnolia"/>
 
     <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
@@ -19,7 +19,7 @@
         </tx:attributes>
     </tx:advice>
     <aop:config>
-        <aop:pointcut id="serviceOperation" expression="execution(* magnolia.*.service.*.*(..))"/>
+        <aop:pointcut id="serviceOperation" expression="execution(* com.github.itpkg.magnolia.*.service.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
     </aop:config>
 

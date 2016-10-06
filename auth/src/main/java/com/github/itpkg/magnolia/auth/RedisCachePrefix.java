@@ -1,4 +1,4 @@
-package com.github.itpkg.magnolia;
+package com.github.itpkg.magnolia.auth;
 
 /**
  * Created by flamen on 16-9-19.

@@ -1,9 +1,9 @@
 package com.github.itpkg.magnolia.auth.services;
 
+import com.github.itpkg.magnolia.auth.helpers.EncryptHelper;
 import com.github.itpkg.magnolia.auth.helpers.GravatarHelper;
 import com.github.itpkg.magnolia.auth.models.User;
 import com.github.itpkg.magnolia.auth.repositiries.UserRepository;
-import com.github.itpkg.magnolia.auth.helpers.EncryptHelper;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

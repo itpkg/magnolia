@@ -1,9 +1,9 @@
 package com.github.itpkg.magnolia.auth.services;
 
-import com.google.gson.Gson;
 import com.github.itpkg.magnolia.auth.helpers.EncryptHelper;
 import com.github.itpkg.magnolia.auth.models.Setting;
 import com.github.itpkg.magnolia.auth.repositiries.SettingRepository;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

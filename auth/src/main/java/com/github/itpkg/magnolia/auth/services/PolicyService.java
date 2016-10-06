@@ -1,10 +1,10 @@
 package com.github.itpkg.magnolia.auth.services;
 
+import com.github.itpkg.magnolia.auth.models.Policy;
 import com.github.itpkg.magnolia.auth.models.Role;
 import com.github.itpkg.magnolia.auth.repositiries.PolicyRepository;
 import com.github.itpkg.magnolia.auth.repositiries.RoleRepository;
 import com.github.itpkg.magnolia.auth.repositiries.UserRepository;
-import com.github.itpkg.magnolia.auth.models.Policy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

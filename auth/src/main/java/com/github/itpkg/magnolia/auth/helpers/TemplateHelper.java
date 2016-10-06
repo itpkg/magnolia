@@ -10,28 +10,22 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.io.Serializable;
+import java.io.Reader;
 import java.io.Writer;
 
 /**
  * Created by flamen on 16-9-19.
  */
-@Component("auth.nginxHelper")
-public class NginxHelper {
-    private class Model implements Serializable {
-        String domain;
-        boolean https;
-        int port;
+@Component("auth.templateHelper")
+public class TemplateHelper {
+    public <T> void parse(Reader r, Writer w, T t) throws IOException {
+        Mustache mustache = factory.compile(r, "");
+        mustache.execute(w, t).flush();
     }
 
-    public void conf(Writer writer) throws IOException {
-        Model model = new Model();
-        model.domain = settingService.get("site.domain", String.class);
-        model.https = settingService.get("site.https?", Boolean.class);
-        model.port = port;
-
-        Mustache mustache = factory.compile("nginx.conf");
-        mustache.execute(writer, model).flush();
+    public <T> void parse(String f, Writer w, T t) throws IOException {
+        Mustache mustache = factory.compile(f);
+        mustache.execute(w, t).flush();
     }
 
     @PostConstruct

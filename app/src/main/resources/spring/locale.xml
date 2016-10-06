@@ -18,13 +18,13 @@
 
     <bean id="messageSource" class="com.github.itpkg.magnolia.auth.DatabaseMessageSource">
         <property name="useCodeAsDefaultMessage" value="true"/>
-        <property name="parentMessageSource" ref="bundleMessageSource"/>
+        <property name="parentMessageSource" ref="propertiesMessageSource"/>
     </bean>
 
-    <bean id="bundleMessageSource"
+    <bean id="propertiesMessageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="messages"/>
         <property name="defaultEncoding" value="UTF-8"/>
-        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="fallbackToSystemLocale" value="false"/>
     </bean>
 </beans>

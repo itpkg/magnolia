@@ -16,8 +16,16 @@ public class DatabaseMessageSource extends AbstractMessageSource {
     @Override
     protected MessageFormat resolveCode(String code, Locale locale) {
         com.github.itpkg.magnolia.auth.models.Locale l = localeRepository.findByLangAndCode(locale.toLanguageTag(), code);
-        return createMessageFormat(l == null ? null : l.getBody(), locale);
+
+
+        return createMessageFormat(l == null ?
+                (getParentMessageSource() == null ?
+                        null :
+                        getParentMessageSource().getMessage(code, null, locale)
+                ) :
+                l.getBody(), locale);
     }
+
 
     @Resource
     LocaleRepository localeRepository;

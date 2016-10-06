@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UsersController {
     @GetMapping("/sign-in")
     public String getSignIn(Model model) {
-        return "users/sign-in";
+        return "auth/users/sign-in";
     }
 }

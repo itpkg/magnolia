@@ -22,3 +22,14 @@ ls config # edit configuration file
 
 firefox http://your-hostname:8080
 ```
+
+## Development
+### IntelliJ Idea 
+Use debug the application, 
+
+After add application.properties with:
+
+spring.thymeleaf.cache: false
+
+Then, after edit html template, must use CTRL+F9 to make the project.
+

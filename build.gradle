@@ -42,9 +42,6 @@ allprojects {
 
         compile group: 'cz.jiripinkas', name: 'jsitemapgenerator', version: '2.2'
         compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
-        compile group: 'com.rometools', name: 'rome', version: '1.7.0'
-        compile group: 'com.github.dfabulich', name: 'sitemapgen4j', version: '1.0.6'
-
 
         testCompile("junit:junit:4.+")
     }

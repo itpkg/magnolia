@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,8 +64,7 @@ public class SeoController {
     //http://www.sitemaps.org/protocol.html
     @GetMapping("/sitemap.xml")
     @ResponseBody
-    public String getSitemap() {
-
+    public String getSitemap() throws MalformedURLException {
         SitemapGenerator sg = new SitemapGenerator(settingService.getHome());
 
         sg.addPage(new WebPageBuilder().name("index.php")

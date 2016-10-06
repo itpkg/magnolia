@@ -1,0 +1,4 @@
+RAILS_ENV=production
+
+# pwgen -n 128 1
+SECRET_KEY_BASE=al0zeishoeheWaich5pahL6saren0oqueas0sooHaineij6aex8eeJ8phaiThuifohKai8Nohj0Sheex7eedietahbiMah3ahzu3naiSoi0ephiGoich3iyieseesh5u

@@ -6,6 +6,12 @@ package magnolia;
 public class RedisCachePrefix implements org.springframework.data.redis.cache.RedisCachePrefix {
     @Override
     public byte[] prefix(String cacheName) {
-        return String.format("cache://%s", cacheName).getBytes();
+        return String.format("%s%s", prefix, cacheName).getBytes();
+    }
+
+    private String prefix;
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }

@@ -2,4 +2,4 @@
 /magnolia
 /magnolia.tar.gz
 /lastupdate.tmp
-/routers/commentsRouter_controllers.go
+/routers/commentsRouter_controllers*.go

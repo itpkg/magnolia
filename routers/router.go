@@ -1,10 +1,10 @@
 package routers
 
 import (
-	"github.com/itpkg/magnolia/controllers"
 	"github.com/astaxie/beego"
+	"github.com/itpkg/magnolia/controllers"
 )
 
 func init() {
-    beego.Router("/", &controllers.MainController{})
+	beego.Include(&controllers.HomeController{})
 }

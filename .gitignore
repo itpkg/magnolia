@@ -1,2 +1,5 @@
+# for beego
 /magnolia
 /magnolia.tar.gz
+/lastupdate.tmp
+/routers/commentsRouter_controllers.go

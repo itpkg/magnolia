@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/astaxie/beego"
+	"github.com/itpkg/magnolia/models/site"
 	"github.com/itpkg/magnolia/utils"
 )
 
@@ -77,12 +78,15 @@ server {
 
 	port, err := beego.AppConfig.Int("httpport")
 	utils.InternalServerError(p, err)
+	var name string
+	err = site.Get("site.domain", &name)
+	utils.InternalServerError(p, err)
 	err = t.Execute(p.Ctx.ResponseWriter, struct {
 		Name string
 		Port int
 		Root string
 	}{
-		Name: "www.change-me.com", //TODO load from database
+		Name: name,
 		Port: port,
 		Root: pwd,
 	})

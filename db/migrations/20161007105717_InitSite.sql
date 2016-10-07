@@ -42,16 +42,14 @@ create table leave_words(
 create table attachments(
   id serial primary key,
   title varchar(255) not null,
-  ext varchar(6) not null,
-  uid varchar(36) not null,
+  name varchar(48) not null,
   media_type varchar(32) not null,
   created_at timestamp without time zone not null default now(),
   updated_at timestamp without time zone not null
 );
-create unique index idx_attachments_uid on attachments(uid);
+create unique index idx_attachments_uid on attachments(name);
 create index idx_attachments_title on attachments(title);
 create index idx_attachments_media_type on attachments(media_type);
-create index idx_attachments_ext on attachments(ext);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

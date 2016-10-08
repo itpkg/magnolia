@@ -53,7 +53,7 @@ func (p *Controller) setLangVer() {
 
 	// Set language properties.
 	p.Locale = lang
-	p.Data["Locale"] = lang
+	p.Data["L"] = lang
 	p.Data["Locales"] = locales
 
 }
@@ -77,5 +77,5 @@ func init() {
 		}
 	}
 
-	beego.AddFuncMap("i18n", models.T)
+	beego.AddFuncMap("T", models.T)
 }

@@ -5,11 +5,10 @@ type HomeController struct {
 	Controller
 }
 
-// Index home
+// Home home
 //@router / [get]
-func (p *HomeController) Index() {
+func (p *HomeController) Home() {
 	//TODO
-	p.Data["Website"] = "beego.me"
-	p.Data["Email"] = "astaxie@gmail.com"
-	p.TplName = "index.tpl"
+	p.Data["Title"] = "home"
+	p.TplName = "home.tpl"
 }

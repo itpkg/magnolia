@@ -37,6 +37,7 @@ go get -u github.com/golang/lint/golint
 go get -u github.com/kardianos/govendor
 
 go get -u github.com/beego/bee
+go get -u bitbucket.org/liamstask/goose/cmd/goose
 go get -u github.com/itpkg/magnolia.git
 ```
 

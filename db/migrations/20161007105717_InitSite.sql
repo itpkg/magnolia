@@ -51,8 +51,21 @@ create unique index idx_attachments_uid on attachments(name);
 create index idx_attachments_title on attachments(title);
 create index idx_attachments_media_type on attachments(media_type);
 
+create table pages(
+  id serial primary key,
+  title varchar(255) not null,
+  lang varchar(8) not null default 'en-US',
+  href varchar(255) not null,
+  created_at timestamp without time zone not null default now(),
+  updated_at timestamp without time zone not null
+);
+create unique index idx_pages_lang_href on pages(lang, href);
+create index idx_pages_lang on pages(lang);
+create index idx_pages_href on pages(href);
+
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+drop table pages;
 drop table attachments;
 drop table leave_words;
 drop table notices;

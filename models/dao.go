@@ -3,6 +3,7 @@ package models
 import (
 	"bytes"
 	"encoding/gob"
+	"fmt"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -18,7 +19,7 @@ func T(locale, code string, args ...interface{}) string {
 	m := site.Locale{}
 	err := o.Raw("SELECT message FROM locales WHERE code = ? AND lang = ? LIMIT 1", code, locale).QueryRow(&m)
 	if err == nil {
-		return m.Message
+		return fmt.Sprintf(m.Message, args...)
 	}
 	if err != orm.ErrNoRows {
 		beego.Error(err)

@@ -1,8 +1,8 @@
 package shop
 
-import "github.com/astaxie/beego"
+import "github.com/itpkg/magnolia/controllers"
 
 //Controller for shop
 type Controller struct {
-	beego.Controller
+	controllers.Controller
 }

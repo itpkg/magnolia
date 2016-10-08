@@ -1,8 +1,8 @@
 package reading
 
-import "github.com/astaxie/beego"
+import "github.com/itpkg/magnolia/controllers"
 
 //Controller for reading
 type Controller struct {
-	beego.Controller
+	controllers.Controller
 }

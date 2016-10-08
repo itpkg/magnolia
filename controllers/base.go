@@ -2,9 +2,12 @@ package controllers
 
 import (
 	"fmt"
+	"net/http"
 	"path"
+	"strconv"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 	"github.com/beego/i18n"
 	"github.com/itpkg/magnolia/models"
 	"golang.org/x/text/language"
@@ -15,6 +18,20 @@ type Controller struct {
 	beego.Controller
 
 	Locale string
+}
+
+//Check check error
+func (p *Controller) Check(e error) {
+	if e == nil {
+		return
+	}
+	beego.Error(e)
+	switch e {
+	case orm.ErrNoRows:
+		p.Abort(strconv.Itoa(http.StatusNotFound))
+	default:
+		p.Abort(strconv.Itoa(http.StatusInternalServerError))
+	}
 }
 
 //Prepare prepare

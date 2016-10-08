@@ -1,8 +1,11 @@
 package routers
 
 import (
+	"fmt"
+
 	"github.com/astaxie/beego"
 	"github.com/itpkg/magnolia/controllers"
+	"github.com/itpkg/magnolia/controllers/admin"
 	"github.com/itpkg/magnolia/controllers/auth"
 	"github.com/itpkg/magnolia/controllers/forum"
 	"github.com/itpkg/magnolia/controllers/ops"
@@ -17,10 +20,18 @@ func init() {
 	beego.Include(&controllers.HomeController{})
 	beego.Include(&seo.Controller{})
 	beego.Include(&auth.Controller{})
-	beego.Include(&forum.Controller{})
-	beego.Include(&reading.Controller{})
-	beego.Include(&shop.Controller{})
+	beego.Include(&admin.Controller{})
 	beego.Include(&ops.Controller{})
-	beego.Include(&ops_mail.Controller{})
-	beego.Include(&ops_vpn.Controller{})
+
+	for k, v := range map[string]beego.ControllerInterface{
+		"forum":   &forum.Controller{},
+		"reading": &reading.Controller{},
+		"shop":    &shop.Controller{},
+		"opsmail": &ops_mail.Controller{},
+		"opsvpn":  &ops_vpn.Controller{},
+	} {
+		if beego.AppConfig.DefaultBool(fmt.Sprintf("engine%senable", k), true) {
+			beego.Include(v)
+		}
+	}
 }

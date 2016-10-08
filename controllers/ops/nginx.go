@@ -71,15 +71,15 @@ server {
 	`
 
 	t, err := template.New("").Parse(tpl)
-	models.InternalServerError(p, err)
+	p.Check(err)
 	pwd, err := os.Getwd()
-	models.InternalServerError(p, err)
+	p.Check(err)
 
 	port, err := beego.AppConfig.Int("httpport")
-	models.InternalServerError(p, err)
+	p.Check(err)
 	var name string
 	err = models.Get("site.domain", &name)
-	models.InternalServerError(p, err)
+	p.Check(err)
 	err = t.Execute(p.Ctx.ResponseWriter, struct {
 		Name string
 		Port int
@@ -89,5 +89,5 @@ server {
 		Port: port,
 		Root: pwd,
 	})
-	models.InternalServerError(p, err)
+	p.Check(err)
 }

@@ -12,3 +12,9 @@ func (p *HomeController) Home() {
 	p.Data["Title"] = "home"
 	p.TplName = "home.tpl"
 }
+
+//GetPage show page
+//@router /:name:string [get]
+func (p *HomeController) GetPage() {
+	//TODO
+}

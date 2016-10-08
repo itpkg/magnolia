@@ -1,4 +1,4 @@
-package utils
+package models
 
 import (
 	"math/rand"
@@ -15,6 +15,8 @@ func Shell(cmd string, args ...string) error {
 	}
 	return syscall.Exec(bin, append([]string{cmd}, args...), os.Environ())
 }
+
+// -----------------------------------------------------------------------------
 
 //RandomBytes random bytes
 func RandomBytes(n uint) ([]byte, error) {

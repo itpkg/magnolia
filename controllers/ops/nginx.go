@@ -5,8 +5,7 @@ import (
 	"os"
 
 	"github.com/astaxie/beego"
-	"github.com/itpkg/magnolia/models/site"
-	"github.com/itpkg/magnolia/utils"
+	"github.com/itpkg/magnolia/models"
 )
 
 //Nginx show nginx.conf
@@ -72,15 +71,15 @@ server {
 	`
 
 	t, err := template.New("").Parse(tpl)
-	utils.InternalServerError(p, err)
+	models.InternalServerError(p, err)
 	pwd, err := os.Getwd()
-	utils.InternalServerError(p, err)
+	models.InternalServerError(p, err)
 
 	port, err := beego.AppConfig.Int("httpport")
-	utils.InternalServerError(p, err)
+	models.InternalServerError(p, err)
 	var name string
-	err = site.Get("site.domain", &name)
-	utils.InternalServerError(p, err)
+	err = models.Get("site.domain", &name)
+	models.InternalServerError(p, err)
 	err = t.Execute(p.Ctx.ResponseWriter, struct {
 		Name string
 		Port int
@@ -90,5 +89,5 @@ server {
 		Port: port,
 		Root: pwd,
 	})
-	utils.InternalServerError(p, err)
+	models.InternalServerError(p, err)
 }

@@ -1,25 +1,19 @@
-package utils_test
+package test
 
 import (
-	"crypto/aes"
 	"testing"
 
-	"github.com/itpkg/magnolia/utils"
+	"github.com/itpkg/magnolia/models"
 )
 
 func TestTextEncryptor(t *testing.T) {
-	cip, err := aes.NewCipher([]byte("1234567890123456"))
-	if err != nil {
-		t.Fatal(err)
-	}
 
-	enc := utils.TextEncryptor{Cipher: cip}
 	hello := "Hello, magnolia!"
-	code, err := enc.Encode([]byte(hello))
+	code, err := models.Encrypt([]byte(hello))
 	if err != nil {
 		t.Fatal(err)
 	}
-	plain, err := enc.Decode(code)
+	plain, err := models.Decrypt(code)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -29,14 +23,14 @@ func TestTextEncryptor(t *testing.T) {
 }
 
 func TestPasswordEncryptor(t *testing.T) {
-	enc := utils.PasswordEncryptor{}
+
 	plain := "123456"
-	code, err := enc.Sum([]byte(plain), 8)
+	code, err := models.SSha512Sum([]byte(plain), 8)
 	if err != nil {
 		t.Fatal(err)
 	}
 	t.Logf("doveadm pw -t {SSHA512}%s -p %s", code, plain)
-	rst, err := enc.Equal([]byte(plain), code)
+	rst, err := models.SSha512Chk([]byte(plain), code)
 	if err != nil {
 		t.Fatal(err)
 	}

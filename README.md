@@ -35,6 +35,9 @@ go get -u github.com/alecthomas/gometalinter
 go get -u github.com/golang/lint/golint
 
 go get -u github.com/kardianos/govendor
+
+go get -u github.com/beego/bee
+go get -u github.com/itpkg/magnolia.git
 ```
 
 ## Database creation
@@ -48,13 +51,11 @@ CREATE USER user-name WITH PASSWORD 'change-me';
 GRANT ALL PRIVILEGES ON DATABASE db-name TO user-name;
 ```
 
-## Deployment
+## Build
 
 ```
-go get -u github.com/beego/bee
-go get -u github.com/itpkg/magnolia.git
 cd $GOPATH/src/github.com/itpkg/magnolia
-bee package
+bee pack
 ```
 
 ## Documents

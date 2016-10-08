@@ -5,6 +5,7 @@ import (
 	"encoding/gob"
 	"time"
 
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/itpkg/magnolia/models/site"
 )
@@ -64,5 +65,5 @@ func Get(k string, v interface{}) error {
 // ----------------------------------------------------------------------------
 
 func init() {
-	orm.Debug = true
+	orm.Debug = beego.AppConfig.String("runmode") != "prod"
 }

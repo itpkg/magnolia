@@ -1,13 +1,20 @@
-package web
+package cfg
 
 //-----------------------------------------------------------------------------
 
 var vars map[string]interface{}
 
-func Load(file string) error{
+func IsProd()bool{
+	return String("env", "dev") == "prod"
 }
 
-func Write() error{
+
+func Load(file string) error{
+	return nil
+}
+
+func Write(file string) error{
+	return nil
 }
 
 func init(){

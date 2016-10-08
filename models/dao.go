@@ -7,8 +7,24 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/beego/i18n"
 	"github.com/itpkg/magnolia/models/site"
 )
+
+//T translate
+func T(locale, code string, args ...interface{}) string {
+
+	o := orm.NewOrm()
+	m := site.Locale{}
+	err := o.Raw("SELECT message FROM locales WHERE code = ? AND lang = ? LIMIT 1", code, locale).QueryRow(&m)
+	if err == nil {
+		return m.Message
+	}
+	if err != orm.ErrNoRows {
+		beego.Error(err)
+	}
+	return i18n.Tr(locale, code, args...)
+}
 
 //Set set key => val
 func Set(k string, v interface{}, f bool) error {

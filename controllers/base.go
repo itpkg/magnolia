@@ -6,6 +6,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
+	"github.com/itpkg/magnolia/models"
 	"golang.org/x/text/language"
 )
 
@@ -76,5 +77,5 @@ func init() {
 		}
 	}
 
-	beego.AddFuncMap("i18n", i18n.Tr)
+	beego.AddFuncMap("i18n", models.T)
 }

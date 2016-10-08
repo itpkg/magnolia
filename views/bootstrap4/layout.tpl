@@ -19,17 +19,24 @@
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <a href="#" class="navbar-brand">{{T .L "site.sub_title"}}</a>
     <ul class="nav navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/">{{T .L "links.home"}} <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">bbb</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#">aaa</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="{{urlfor "Controller.GetPage" ":name" "help"}}">
+          {{T .L "links.help"}}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{urlfor "Controller.GetPage" ":name" "about"}}">
+          {{T .L "links.about"}}
+        </a>
       </li>
     </ul>
   </nav>
@@ -45,8 +52,8 @@
       </p>
       <p>
         &copy; {{T .L "site.copyright"}} &middot;
-        <a href="#">{{T .L "links.privacy"}}</a> &middot;
-        <a href="#">{{T .L "links.terms"}}</a>
+        <a href="{{urlfor "Controller.GetPage" ":name" "privacy"}}">{{T .L "links.privacy"}}</a> &middot;
+        <a href="{{urlfor "Controller.GetPage" ":name" "team"}}">{{T .L "links.terms"}}</a>
       </p>
     </footer>
 {{end}}

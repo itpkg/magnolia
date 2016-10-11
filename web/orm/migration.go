@@ -17,10 +17,12 @@ type Migration struct {
 	Down []string `toml:"down"`
 }
 
+//File config filename
 func (p *Migration) File() string {
 	return path.Join("db", driver, "migrations", p.Name)
 }
 
+//Generate generate a demo migration file
 func Generate(name string) error {
 	mig := Migration{
 		Name: fmt.Sprintf("%s_%s.toml", time.Now().Format("20060102150405"), name),
@@ -37,6 +39,7 @@ func Generate(name string) error {
 	return toml.NewEncoder(fd).Encode(mig)
 }
 
+//Migrate migrate database
 func Migrate() error {
 	items, err := load()
 	if err != nil {
@@ -78,6 +81,7 @@ func Migrate() error {
 	return err
 }
 
+//Rollback rollback database
 func Rollback() error {
 	var name string
 	var err error
@@ -111,6 +115,7 @@ func Rollback() error {
 	return err
 }
 
+//Status database schema status
 func Status() (map[string]time.Time, error) {
 	rows, err := db.Query("SELECT name, created_at FROM migration_schemes ORDER BY id DESC")
 	if err != nil {

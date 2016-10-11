@@ -3,8 +3,11 @@ package orm
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"os"
 	"path"
+
+	"github.com/BurntSushi/toml"
 )
 
 var driver string
@@ -29,6 +32,24 @@ func Open(drv, src string) error {
 		err = unknownDriverError
 
 	}
+	if err != nil {
+		return err
+	}
+
+	mpf := path.Join("db", drv, "mappers.toml")
+	if _, err = os.Stat(mpf); os.IsNotExist(err) {
+		log.Printf("grenate file %s", mpf)
+		fd, er := os.OpenFile(mpf, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0600)
+		if er != nil {
+			return er
+		}
+		defer fd.Close()
+		err = toml.NewEncoder(fd).Encode(queries)
+	}
+	if err != nil {
+		return err
+	}
+	_, err = toml.DecodeFile(mpf, &queries)
 	return err
 }
 

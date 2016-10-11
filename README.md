@@ -50,11 +50,18 @@ CREATE USER user-name WITH PASSWORD 'change-me';
 GRANT ALL PRIVILEGES ON DATABASE db-name TO user-name;
 ```
 
+* ExecStartPre=/usr/bin/postgresql-check-db-dir ${PGROOT}/data (code=exited, status=1/FAILURE)
+
+``` 
+initdb  -D '/var/lib/postgres/data'
+```
+
 ## Build
 
 ```
 cd $GOPATH/src/github.com/itpkg/magnolia
-./pack
+make 
+ls -lh dist
 ```
 
 ## Documents

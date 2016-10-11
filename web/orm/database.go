@@ -12,7 +12,9 @@ import (
 
 var driver string
 var db *sql.DB
+var unknownDriverError = fmt.Errorf("unknown driver %s", driver)
 
+//Open open database
 func Open(drv, src string) error {
 	var err error
 	if db, err = sql.Open(drv, src); err != nil {
@@ -49,8 +51,34 @@ func Open(drv, src string) error {
 	if err != nil {
 		return err
 	}
+	log.Printf("load mappers")
 	_, err = toml.DecodeFile(mpf, &queries)
 	return err
 }
 
-var unknownDriverError = fmt.Errorf("unknown driver %s", driver)
+//Exec db.Exec
+func Exec(name string, args ...interface{}) (sql.Result, error) {
+	qry, ok := queries[name]
+	if !ok {
+		return nil, fmt.Errorf("not found query for name %s", name)
+	}
+	return db.Exec(qry, args...)
+}
+
+//Query db.Query
+func Query(name string, args ...interface{}) (*sql.Rows, error) {
+	qry, ok := queries[name]
+	if !ok {
+		return nil, fmt.Errorf("not found query for name %s", name)
+	}
+	return db.Query(qry, args...)
+}
+
+//Query db.QueryRow
+func QueryRow(name string, args ...interface{}) (*sql.Row, error) {
+	qry, ok := queries[name]
+	if !ok {
+		return nil, fmt.Errorf("not found query for name %s", name)
+	}
+	return db.QueryRow(qry, args...), nil
+}

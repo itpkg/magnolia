@@ -58,6 +58,7 @@ func Migrate() error {
 			return err
 		}
 		if count == 0 {
+			log.Printf("do migrate %s", mig.Name)
 			switch driver {
 			case "postgres":
 				for _, up := range mig.Up {
@@ -95,6 +96,7 @@ func Rollback() error {
 	if err != nil {
 		return err
 	}
+	log.Printf("do rollback %s", name)
 	var mig Migration
 	_, err = toml.DecodeFile(path.Join("db", driver, "migrations", fmt.Sprintf("%s.toml", name)), &mig)
 	if err != nil {
